@@ -1,5 +1,5 @@
 import './Navbar.css'
-function Navbar(){
+function NavbarComponent(){
     return(
         <nav className="navbar navbar-expand-lg navbar-light bg-light ">
             <div className="container-fluid">
@@ -23,4 +23,4 @@ function Navbar(){
         </nav>
     )
 }
-export default Navbar;
+export default NavbarComponent;
