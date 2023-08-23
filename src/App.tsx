@@ -5,6 +5,7 @@ import SearchComponent from "./components/SearchComponent";
 import SortComponent from "./components/SortComponent";
 import socialMediaData from "./components/socialMediaData";
 import CardComponentInterface from "./components/CardComponentInterface";
+import NoResultsFoundComponent from "./components/NoResultsFoundComponent";
 
 function App() {
     const [filteredData, setFilteredData] = useState(socialMediaData);
@@ -23,22 +24,21 @@ function App() {
         <div>
             <NavbarComponent></NavbarComponent>
             <div className="container">
-                <SearchComponent
-                    handleSubmit={(searchValue: string) => setSearchValue(searchValue)}
-                />
-                <SortComponent/>
+                <div className="row">
+                    <SearchComponent
+                        handleSubmit={(searchValue: string) => setSearchValue(searchValue)}
+                    />
+                    <SortComponent/>
+                </div>
 
                 <div className="row">
                     {filteredData.length === 0 ? (
-                        <p>The results doesnt match</p>
+                        <NoResultsFoundComponent searchCriteria={searchValue}/>
                     ) : (
                         filteredData.map((cardComponent: CardComponentInterface) => (
                             <CardComponent
                                 key={cardComponent.title}
-                                image={cardComponent.image}
-                                title={cardComponent.title}
-                                description={cardComponent.description}
-                                date={cardComponent.date}
+                                {...cardComponent}
                             />
                         ))
 
