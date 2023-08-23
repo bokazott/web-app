@@ -5,7 +5,12 @@ const SearchComponent = (props: SearchComponentInterface) => {
     const [inputValue, setInputValue] = useState<string>("");
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(event.target.value);
+
+        if(event.target.value === ''){
+            props.handleSubmit("")
+        }
     }
+
     const onFormSubmit = (event: any) => {
         event.preventDefault();
         props.handleSubmit(inputValue)

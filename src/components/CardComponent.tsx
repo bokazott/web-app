@@ -4,7 +4,7 @@ import CardComponentInterface from "./CardComponentInterface";
 
 export const CardComponent = (props: CardComponentInterface) => {
     return (
-        <div className='col-4'>
+        <div className='col-4 mt-5'>
             <div className='card text-bg-light mb-3'>
                 <div className='card-header'>
                     <img style={{width: '10%', marginLeft: '50%'}} src={props.image} alt="instagram"/>
