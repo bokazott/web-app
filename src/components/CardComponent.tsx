@@ -1,8 +1,8 @@
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+
 import CardComponentInterface from "./CardComponentInterface";
-
-
-export const CardComponent = (props: CardComponentInterface) => {
+import HeartIcon from "./HeartIcon";
+import {AddToFavouritesInterface} from "./AddToFavouritesInterface";
+export const CardComponent = (props: CardComponentInterface & AddToFavouritesInterface) => {
     return (
         <div className='col-4 mt-5'>
             <div className='card text-bg-light mb-3'>
@@ -20,7 +20,7 @@ export const CardComponent = (props: CardComponentInterface) => {
                                 className='text-muted'>{props.date}</small></p>
                         </div>
                         <div className='col'>
-                            <FontAwesomeIcon icon={["fas", "heart"]}/>
+                            <HeartIcon onClick={() => props.addToFavourites(props)}/>
                         </div>
                     </div>
                 </div>

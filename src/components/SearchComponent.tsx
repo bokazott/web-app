@@ -13,7 +13,7 @@ const SearchComponent = (props: SearchComponentInterface) => {
 
     const onFormSubmit = (event: any) => {
         event.preventDefault();
-        props.handleSubmit(inputValue)
+        props.handleSubmit(inputValue);
     }
 
     return (

@@ -1,50 +1,34 @@
-import React, {useState, useEffect} from 'react';
 import NavbarComponent from './components/NavbarComponent'
-import CardComponent from "./components/CardComponent";
-import SearchComponent from "./components/SearchComponent";
-import SortComponent from "./components/SortComponent";
-import socialMediaData from "./components/socialMediaData";
+import HomePage from "./components/HomePage";
+import {Routes,Route} from "react-router";
+import Favourites from "./components/Favourites";
+import History from "./components/History";
+import Profile from "./components/Profile";
+import {useState} from "react";
 import CardComponentInterface from "./components/CardComponentInterface";
-import NoResultsFoundComponent from "./components/NoResultsFoundComponent";
 
 function App() {
-    const [filteredData, setFilteredData] = useState(socialMediaData);
-    const [searchValue, setSearchValue] = useState('');
+    const [favouriteCards, setFavouriteCards] = useState<CardComponentInterface[]>([]);
+    const [searchHistory, setSearchHistory] = useState<string[]>([]); // State for search history
 
-    useEffect(() => {
-        const filtered = socialMediaData.filter(item =>
-            item.title.toLowerCase().includes(searchValue.toLowerCase())
-        );
-
-        setFilteredData(filtered);
-    }, [searchValue]);
-
-
+    const updateSearchHistory = (searchQuery: string) => {
+        setSearchHistory(prevSearchHistory => [...prevSearchHistory, searchQuery]);
+    };
     return (
         <div>
-            <NavbarComponent></NavbarComponent>
-            <div className="container">
-                <div className="row">
-                    <SearchComponent
-                        handleSubmit={(searchValue: string) => setSearchValue(searchValue)}
-                    />
-                    <SortComponent/>
-                </div>
-
-                <div className="row">
-                    {filteredData.length === 0 ? (
-                        <NoResultsFoundComponent searchCriteria={searchValue}/>
-                    ) : (
-                        filteredData.map((cardComponent: CardComponentInterface) => (
-                            <CardComponent
-                                key={cardComponent.title}
-                                {...cardComponent}
-                            />
-                        ))
-
-                    )}
-                </div>
-            </div>
+            <NavbarComponent />
+            <Routes>
+                <Route
+                    path="/"
+                    element={<HomePage favouriteCards={favouriteCards}
+                                       setFavouriteCards={setFavouriteCards}
+                                       updateSearchHistory={updateSearchHistory}
+                    />}
+                />
+                <Route path="/favourites" element={<Favourites favouriteCards={favouriteCards} />} />
+                <Route path="/history" element={<History searchHistory={searchHistory} />} />
+                <Route path="/profile" element={<Profile />} />
+            </Routes>
         </div>
     );
 }
