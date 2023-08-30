@@ -1,12 +1,9 @@
 import React from 'react';
-import CardComponentInterface from './CardComponentInterface';
 import CardComponent from './CardComponent';
+import {FavouritesComponentInterface} from "./FavouritesComponentInterface";
 
-interface FavouritesProps {
-    favouriteCards: CardComponentInterface[];
-}
 
-function Favourites({ favouriteCards }: FavouritesProps) {
+function FavouritesComponent({favouriteCards}: FavouritesComponentInterface) {
     return (
         <div className="container">
             <h2>Your Favourite Cards</h2>
@@ -15,7 +12,8 @@ function Favourites({ favouriteCards }: FavouritesProps) {
                     <CardComponent
                         key={card.title}
                         {...card}
-                        addToFavourites={() => {}}
+                        addToFavourites={() => {
+                        }}
                     />
                 ))}
             </div>
@@ -23,4 +21,4 @@ function Favourites({ favouriteCards }: FavouritesProps) {
     );
 }
 
-export default Favourites;
+export default FavouritesComponent;

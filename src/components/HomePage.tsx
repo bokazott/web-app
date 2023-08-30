@@ -6,6 +6,7 @@ import socialMediaData from "./socialMediaData";
 import CardComponentInterface from "./CardComponentInterface";
 import NoResultsFoundComponent from "./NoResultsFoundComponent";
 import HomePageInterface from "./HomePageInterface";
+
 function HomePage({ favouriteCards, setFavouriteCards,updateSearchHistory }: HomePageInterface) {
     const [filteredData, setFilteredData] = useState(socialMediaData);
     const [searchValue, setSearchValue] = useState('');
@@ -18,7 +19,10 @@ function HomePage({ favouriteCards, setFavouriteCards,updateSearchHistory }: Hom
     }, [searchValue]);
 
     const addToFavourites = (card: CardComponentInterface) => {
-        setFavouriteCards(prevFavourites => [...prevFavourites, card]);
+        const isCardAdded=favouriteCards.some((favouriteCards)=>favouriteCards.title===card.title)
+        if(!isCardAdded){
+            setFavouriteCards(prevFavourites => [...prevFavourites, card]);
+        }
     };
 
 

@@ -1,6 +1,6 @@
 
 import CardComponentInterface from "./CardComponentInterface";
-import HeartIcon from "./HeartIcon";
+import HeartIconComponent from "./HeartIconComponent";
 import {AddToFavouritesInterface} from "./AddToFavouritesInterface";
 export const CardComponent = (props: CardComponentInterface & AddToFavouritesInterface) => {
     return (
@@ -20,7 +20,7 @@ export const CardComponent = (props: CardComponentInterface & AddToFavouritesInt
                                 className='text-muted'>{props.date}</small></p>
                         </div>
                         <div className='col'>
-                            <HeartIcon onClick={() => props.addToFavourites(props)}/>
+                            <HeartIconComponent onClick={() => props.addToFavourites(props)}/>
                         </div>
                     </div>
                 </div>

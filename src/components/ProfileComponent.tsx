@@ -1,11 +1,11 @@
-const Profile=()=>{
+const ProfileComponent=()=>{
     return(
         <div>
             sojma
         </div>
     )
 }
-export default Profile;
+export default ProfileComponent;
 
 
 

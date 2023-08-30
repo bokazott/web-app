@@ -1,9 +1,9 @@
 import NavbarComponent from './components/NavbarComponent'
 import HomePage from "./components/HomePage";
 import {Routes,Route} from "react-router";
-import Favourites from "./components/Favourites";
-import History from "./components/History";
-import Profile from "./components/Profile";
+import FavouritesComponent from "./components/FavouritesComponent";
+import HistoryComponent from "./components/HistoryComponent";
+import ProfileComponent from "./components/ProfileComponent";
 import {useState} from "react";
 import CardComponentInterface from "./components/CardComponentInterface";
 
@@ -12,7 +12,9 @@ function App() {
     const [searchHistory, setSearchHistory] = useState<string[]>([]); // State for search history
 
     const updateSearchHistory = (searchQuery: string) => {
-        setSearchHistory(prevSearchHistory => [...prevSearchHistory, searchQuery]);
+       if(searchQuery!==''){
+           setSearchHistory(prevSearchHistory => [...prevSearchHistory, searchQuery]);
+       }
     };
     return (
         <div>
@@ -25,9 +27,9 @@ function App() {
                                        updateSearchHistory={updateSearchHistory}
                     />}
                 />
-                <Route path="/favourites" element={<Favourites favouriteCards={favouriteCards} />} />
-                <Route path="/history" element={<History searchHistory={searchHistory} />} />
-                <Route path="/profile" element={<Profile />} />
+                <Route path="/favourites" element={<FavouritesComponent favouriteCards={favouriteCards} />} />
+                <Route path="/history" element={<HistoryComponent searchHistory={searchHistory} />} />
+                <Route path="/profile" element={<ProfileComponent />} />
             </Routes>
         </div>
     );
